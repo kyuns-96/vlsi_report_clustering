@@ -43,9 +43,20 @@ class LocalEmbedder:
     """
     
     def __init__(self, model: str = "all-MiniLM-L6-v2"):
-        """Initialize LocalEmbedder with specified model."""
+        """Initialize LocalEmbedder with specified model.
+        
+        Raises:
+            OSError: If model download fails (check internet connection)
+        """
         from sentence_transformers import SentenceTransformer
-        self.model = SentenceTransformer(model)
+        try:
+            self.model = SentenceTransformer(model)
+        except OSError as e:
+            raise OSError(
+                f"Failed to load model '{model}'. "
+                f"Check internet connection for first-time download (~90MB). "
+                f"Error: {e}"
+            ) from e
     
     def embed(self, lines: list[str]) -> NDArray[np.float32]:
         """Convert text lines to embeddings using sentence-transformers.

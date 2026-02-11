@@ -77,6 +77,10 @@ try:
         except UnicodeDecodeError:
             console.print(f"[red]Error: Unable to decode file. Try --encoding parameter[/red]")
             raise typer.Exit(1)
+        except OSError as e:
+            console.print(f"[red]Error: {e}[/red]")
+            console.print("[yellow]Hint: Check internet connection for first-time model download[/yellow]")
+            raise typer.Exit(1)
         except ImportError as e:
             console.print(f"[red]Error: Missing dependency: {e}[/red]")
             console.print("[yellow]Install with: pip install vlsi-report-cluster[/yellow]")

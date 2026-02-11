@@ -1025,7 +1025,7 @@ Parallel Speedup: ~35% faster than sequential
 
 ---
 
-- [ ] 8. Edge Cases, Error Handling, and README
+- [x] 8. Edge Cases, Error Handling, and README
 
   **What to do**:
   - **Edge case hardening**:
