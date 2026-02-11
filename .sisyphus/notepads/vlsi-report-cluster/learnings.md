@@ -380,3 +380,11 @@ Total: 797 lines of code and tests
 - **pytest not available**: Created `tests/run_parser_tests.py` manual test runner
 - **BeautifulSoup TypeError**: Fixed by reading file content first before passing to constructor
 - **Test expectation too strict**: Adjusted test to match correct parser behavior (headers kept, only separators filtered)
+
+## [2026-02-11T16:25:00Z] Clusterer Module Implementation
+- HDBSCAN parameters: min_cluster_size (default 3), min_samples (default 2), cluster_selection_method="leaf".
+- Fallback thresholds: return None if embeddings < (min_cluster_size * 2) or noise ratio > 0.8.
+
+## [2026-02-11T16:40:00Z] Template Extraction - Drain3 State Isolation
+- Each labeled cluster gets a fresh TemplateMiner instance to avoid cross-cluster template leakage (Drain3 is stateful).
+- Drain3-only fallback keeps a single miner for all lines when labels are absent.

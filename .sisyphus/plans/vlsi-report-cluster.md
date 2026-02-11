@@ -738,7 +738,7 @@ Parallel Speedup: ~35% faster than sequential
 
 ---
 
-- [ ] 6. Template Extractor Module (Drain3 Per Cluster)
+- [x] 6. Template Extractor Module (Drain3 Per Cluster)
 
   **What to do**:
   - **RED**: Write tests first in `tests/test_template_extractor.py`:

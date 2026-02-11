@@ -1,6 +1,6 @@
 import numpy as np
-import pytest
-from vlsi_report_cluster.clusterer import ClusterResult, cluster_embeddings
+import pytest  # type: ignore
+from vlsi_report_cluster.clusterer import ClusterResult, cluster_embeddings  # type: ignore
 
 
 def _make_clustered_embeddings(
@@ -18,7 +18,6 @@ def _make_clustered_embeddings(
 
 
 def test_cluster_distinct_groups():
-    """Verify distinct violation types form multiple clusters."""
     centers = np.array(
         [
             [0.0, 0.0],
@@ -35,7 +34,6 @@ def test_cluster_distinct_groups():
 
 
 def test_cluster_labels_shape():
-    """Ensure labels length matches embeddings length."""
     centers = np.array([[0.0, 0.0], [5.0, 5.0]])
     embeddings = _make_clustered_embeddings(centers, [6, 6], scale=0.05, seed=2)
 
@@ -46,7 +44,6 @@ def test_cluster_labels_shape():
 
 
 def test_cluster_noise_points():
-    """Confirm some outliers are labeled as noise (-1)."""
     centers = np.array([[0.0, 0.0], [5.0, 5.0]])
     embeddings = _make_clustered_embeddings(centers, [10, 10], scale=0.05, seed=3)
     outliers = np.array(
@@ -65,7 +62,6 @@ def test_cluster_noise_points():
 
 
 def test_cluster_small_report_fallback():
-    """Return None for reports with fewer than 6 embeddings."""
     embeddings = np.random.default_rng(4).normal(size=(5, 2))
 
     result = cluster_embeddings(embeddings)
@@ -74,7 +70,6 @@ def test_cluster_small_report_fallback():
 
 
 def test_cluster_high_noise_fallback():
-    """Return None when more than 80% of points are noise."""
     embeddings = np.array([[i * 12.0, i * -12.0] for i in range(20)], dtype=float)
 
     result = cluster_embeddings(embeddings, min_cluster_size=4, min_samples=2)
@@ -83,7 +78,6 @@ def test_cluster_high_noise_fallback():
 
 
 def test_cluster_min_cluster_size_parameter():
-    """Validate min_cluster_size changes clustering outcome."""
     centers = np.array([[0.0, 0.0], [7.0, 7.0]])
     embeddings = _make_clustered_embeddings(centers, [5, 5], scale=0.05, seed=5)
 
@@ -95,7 +89,6 @@ def test_cluster_min_cluster_size_parameter():
 
 
 def test_cluster_returns_metadata():
-    """Ensure clustering result exposes metadata fields."""
     centers = np.array([[0.0, 0.0], [5.5, 5.5]])
     embeddings = _make_clustered_embeddings(centers, [6, 6], scale=0.05, seed=6)
 
