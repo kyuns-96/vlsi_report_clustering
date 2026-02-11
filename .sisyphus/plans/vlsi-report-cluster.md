@@ -288,7 +288,7 @@ Parallel Speedup: ~35% faster than sequential
 
 ---
 
-- [ ] 2. Report Parser Module (Format Detection + Line Extraction)
+- [x] 2. Report Parser Module (Format Detection + Line Extraction)
 
   **What to do**:
   - **RED**: Write tests first in `tests/test_parser.py`:
@@ -514,7 +514,7 @@ Parallel Speedup: ~35% faster than sequential
 
 ---
 
-- [ ] 4. Embedder Module (Protocol + Local + OpenAI Implementations)
+- [x] 4. Embedder Module (Protocol + Local + OpenAI Implementations)
 
   **What to do**:
   - **RED**: Write tests first in `tests/test_embedder.py`:
