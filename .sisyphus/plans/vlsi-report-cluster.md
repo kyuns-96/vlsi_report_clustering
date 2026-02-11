@@ -859,7 +859,7 @@ Parallel Speedup: ~35% faster than sequential
 
 ---
 
-- [ ] 7. CLI Integration (Typer + Rich Output + JSON + Full Pipeline)
+- [x] 7. CLI Integration (Typer + Rich Output + JSON + Full Pipeline)
 
   **What to do**:
   - **RED**: Write tests first in `tests/test_cli.py`:

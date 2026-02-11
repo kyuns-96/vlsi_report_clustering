@@ -1,7 +1,6 @@
-"""CLI entry point for vlsi-report-cluster."""
+"""Entry point for vlsi-report-cluster CLI."""
 
-from vlsi_report_cluster.cli import main
-
+from vlsi_report_cluster.cli import cli_main
 
 if __name__ == "__main__":
-    main()
+    cli_main()
