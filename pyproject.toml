@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vlsi-report-cluster"
+version = "0.1.0"
+description = "VLSI Report Clustering and Analysis Tool"
+readme = "README.md"
+authors = [{name = "Author", email = "author@example.com"}]
+license = {text = "MIT"}
+requires-python = ">=3.9"
+
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=10.11.0",
+    "sentence-transformers>=2.2.0",
+    "hdbscan>=0.8.33",
+    "drain3>=0.9.11",
+    "beautifulsoup4>=4.12.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.1.0",
+]
+openai = [
+    "openai>=1.0.0",
+]
+
+[project.scripts]
+vlsi-report-cluster = "vlsi_report_cluster.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"

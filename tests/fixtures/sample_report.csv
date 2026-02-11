@@ -1,0 +1,26 @@
+severity,rule_id,message,file,line
+Warning,W001,signal unconnected,CORE_CPU_0,15
+Warning,W002,signal unconnected,CORE_CPU_0,16
+Error,E001,latch inferred,CORE_CPU_0/LATCH_CTRL_0,17
+Warning,W001,signal unconnected,CORE_CPU_0/ALU_UNIT_0,18
+Info,I001,unused port,CORE_CPU_0/CLK_TREE_0,19
+Error,E001,latch inferred,CORE_CPU_0/STATE_MACHINE_0,20
+Warning,W001,signal unconnected,MEM_CTRL_1/REQUEST_HANDLER_0,21
+Warning,W001,signal unconnected,MEM_CTRL_1/RESPONSE_CTRL_0,22
+Info,I001,unused port,CORE_CPU_0/SCAN_CHAIN_0,23
+Warning,W003,width mismatch,CORE_CPU_0/ALU_UNIT_0,24
+Error,E001,latch inferred,CORE_CPU_0/CONTROL_UNIT_0,25
+Info,I001,unused port,IO_PAD_2/PWR_DOMAIN_0,26
+Warning,W001,signal unconnected,CORE_CPU_0/INT_CTRL_0,27
+Warning,W001,signal unconnected,MEM_CTRL_1/ARB_CTRL_0,28
+Error,E001,latch inferred,MEM_CTRL_1/FIFO_PTR_0,29
+Info,I001,unused port,CORE_CPU_0/SCAN_CHAIN_0,30
+Warning,W003,width mismatch,MEM_CTRL_1/ADDR_ALIGN_0,31
+Warning,W001,signal unconnected,CORE_CPU_0/GATING_CELL_0,32
+Info,I001,unused port,MEM_CTRL_1/CLK_DIVIDER_0,33
+Warning,W001,signal unconnected,CORE_CPU_0/COMPLETION_CTRL_0,34
+Warning,W003,width mismatch,IO_PAD_2/OUTPUT_DRIVER_0,35
+Error,E001,latch inferred,MEM_CTRL_1/WRITE_CTRL_0,36
+Warning,W001,signal unconnected,MEM_CTRL_1/HANDSHAKE_0,37
+Info,I001,unused port,CORE_CPU_0/DEBUG_UNIT_0,38
+Warning,W003,width mismatch,MEM_CTRL_1/DATA_PATH_0,39

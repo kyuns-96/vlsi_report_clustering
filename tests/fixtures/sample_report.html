@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VLSI Report - HTML</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid black; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .warning { color: orange; }
+    .error { color: red; }
+    .info { color: blue; }
+  </style>
+</head>
+<body>
+<h1>VLSI Sanity Check Report</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Severity</th>
+      <th>Message</th>
+      <th>Module</th>
+      <th>Net/Signal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="warning">
+      <td>Warning</td>
+      <td>signal unconnected</td>
+      <td>CORE_CPU_0</td>
+      <td>clk_sync</td>
+    </tr>
+    <tr class="error">
+      <td>Error</td>
+      <td>latch inferred</td>
+      <td>CORE_CPU_0/LATCH_CTRL_0</td>
+      <td>ff_enable</td>
+    </tr>
+    <tr class="info">
+      <td>Info</td>
+      <td>unused port</td>
+      <td>CORE_CPU_0/CLK_TREE_0</td>
+      <td>sys_clk</td>
+    </tr>
+    <tr class="warning">
+      <td>Warning</td>
+      <td>width mismatch</td>
+      <td>CORE_CPU_0/ALU_UNIT_0</td>
+      <td>result</td>
+    </tr>
+    <tr class="error">
+      <td>Error</td>
+      <td>latch inferred</td>
+      <td>MEM_CTRL_1/STATE_MACHINE_0</td>
+      <td>state_q[2]</td>
+    </tr>
+    <tr class="info">
+      <td>Info</td>
+      <td>unused port</td>
+      <td>MEM_CTRL_1/CLK_DIVIDER_0</td>
+      <td>internal_clk</td>
+    </tr>
+    <tr class="warning">
+      <td>Warning</td>
+      <td>signal unconnected</td>
+      <td>MEM_CTRL_1</td>
+      <td>grant_sig</td>
+    </tr>
+    <tr class="error">
+      <td>Error</td>
+      <td>latch inferred</td>
+      <td>IO_PAD_2/ASYNC_FIFO_0</td>
+      <td>rd_flag_latch</td>
+    </tr>
+  </tbody>
+</table>
+<p>Report generated: 2025-02-11 14:35:00</p>
+</body>
+</html>

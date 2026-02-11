@@ -1,0 +1,61 @@
+====================================================================
+VLSI POWER INTENT CHECK REPORT
+Generated: 2025-02-11 14:45:00
+Design: CORE_CPU_0
+====================================================================
+
+Power Domain Analysis
+Domain: PD_CORE (voltage: VDD_0.8V)
+Domain: PD_IO (voltage: VDD_1.2V)
+Domain: PD_AUX (voltage: VDD_3.3V)
+
+====================================================================
+Isolation Cell Verification
+====================================================================
+
+Error: isolation cell missing at domain boundary CORE_CPU_0/CORE_to_IO_0
+Error: isolation cell missing between PD_CORE and PD_IO at CORE_CPU_0/ISOLATE_CHECK_0
+Warning: isolation cell required for signal data_valid at CORE_CPU_0/DATA_PATH_0
+Error: isolation cell missing at domain boundary MEM_CTRL_1/CTRL_to_AUX_0
+Error: isolation cell missing between PD_IO and PD_AUX at MEM_CTRL_1/IO_AUX_CROSS_0
+Warning: isolation cell placement suboptimal in IO_PAD_2/PAD_ISO_0
+Error: isolation cell missing at domain boundary CORE_CPU_0/ALU_ISO_CHECK_0
+Error: isolation cell missing between PD_CORE and PD_IO at CORE_CPU_0/ARITH_BOUNDARY_0
+Warning: isolation cell required for signal interrupt at CORE_CPU_0/INT_ISO_0
+Error: isolation cell missing at domain boundary MEM_CTRL_1/FIFO_CROSS_0
+Error: isolation cell missing between PD_CORE and PD_IO at MEM_CTRL_1/RESPONSE_PATH_0
+Warning: isolation cell placement timing critical at CORE_CPU_0/CLK_GATE_ISOLATE_0
+
+====================================================================
+Level Shifter Verification
+====================================================================
+
+Warning: level shifter required from PD_CORE (0.8V) to PD_IO (1.2V) in CORE_CPU_0/OUTPUT_0
+Warning: level shifter missing on signal addr[31:0] at MEM_CTRL_1/ADDRESS_OUT_0
+Error: level shifter voltage mismatch at CORE_CPU_0/LEVEL_SHIFT_CHECK_0
+Warning: level shifter required from PD_IO (1.2V) to PD_AUX (3.3V) in IO_PAD_2/PAD_DRIVER_0
+Warning: level shifter placement suboptimal at MEM_CTRL_1/SHIFTER_PLACEMENT_0
+Warning: level shifter direction undefined in CORE_CPU_0/BI_SHIFT_0
+Warning: level shifter timing violation at MEM_CTRL_1/DATA_SHIFTER_0
+Warning: level shifter required from PD_AUX (3.3V) to PD_CORE (0.8V) in IO_PAD_2/FEEDBACK_PATH_0
+
+====================================================================
+Retention Register Verification
+====================================================================
+
+Info: retention register verified at CORE_CPU_0/STATE_RET_0 (domain: PD_CORE)
+Info: retention register verified at CORE_CPU_0/CONFIG_RET_0 (domain: PD_CORE)
+Info: retention register verified at MEM_CTRL_1/PTR_RET_0 (domain: PD_IO)
+Info: retention register verified at CORE_CPU_0/ADDR_RET_0 (domain: PD_CORE)
+Info: retention register verified at MEM_CTRL_1/STATUS_RET_0 (domain: PD_IO)
+Info: retention register verified at IO_PAD_2/CONTROL_RET_0 (domain: PD_AUX)
+
+====================================================================
+SUMMARY
+====================================================================
+Isolation Cell Errors: 8
+Isolation Cell Warnings: 4
+Level Shifter Warnings: 8
+Retention Registers Verified: 6
+====================================================================
+Power Intent check completed.

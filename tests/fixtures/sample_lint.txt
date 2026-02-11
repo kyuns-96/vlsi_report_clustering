@@ -1,0 +1,49 @@
+====================================================================
+VLSI SANITY CHECK REPORT - Lint Analysis
+Generated: 2025-02-11 14:30:00
+Design: CORE_CPU_0
+====================================================================
+
+Processing module CORE_CPU_0...
+Analyzing CORE_CPU_0/ALU_UNIT_0...
+
+Warning: signal clk_sync unconnected at module CORE_CPU_0/BUFFER_0
+Warning: signal rst_n unconnected at module CORE_CPU_0/REGISTER_FILE_0
+Error: latch inferred in CORE_CPU_0/LATCH_CTRL_0 (net: ff_enable)
+Warning: signal data_bus[15:0] unconnected at module CORE_CPU_0/ALU_UNIT_0
+Info: unused port sys_clk in CORE_CPU_0/CLK_TREE_0
+Error: latch inferred in CORE_CPU_0/STATE_MACHINE_0 (net: state_q[1])
+Warning: signal req_valid unconnected at module MEM_CTRL_1/REQUEST_HANDLER_0
+Warning: signal ack_ready unconnected at module MEM_CTRL_1/RESPONSE_CTRL_0
+Info: unused port test_mode in CORE_CPU_0/SCAN_CHAIN_0
+Warning: width mismatch: expected 32 bits, got 16 bits in CORE_CPU_0/ALU_UNIT_0 (port: result)
+Error: latch inferred in CORE_CPU_0/CONTROL_UNIT_0 (net: valid_ff)
+Info: unused port pwr_gated in IO_PAD_2/PWR_DOMAIN_0
+Warning: signal interrupt unconnected at module CORE_CPU_0/INT_CTRL_0
+Warning: signal grant_sig unconnected at module MEM_CTRL_1/ARB_CTRL_0
+Error: latch inferred in MEM_CTRL_1/FIFO_PTR_0 (net: wr_ptr_ff)
+Info: unused port scan_en in CORE_CPU_0/SCAN_CHAIN_0
+Warning: width mismatch: expected 64 bits, got 32 bits in MEM_CTRL_1/ADDR_ALIGN_0 (port: address)
+Warning: signal enable_gated unconnected at module CORE_CPU_0/GATING_CELL_0
+Info: unused port internal_clk in MEM_CTRL_1/CLK_DIVIDER_0
+Warning: signal done_flag unconnected at module CORE_CPU_0/COMPLETION_CTRL_0
+Warning: width mismatch: expected 8 bits, got 4 bits in IO_PAD_2/OUTPUT_DRIVER_0 (port: data_out)
+Error: latch inferred in MEM_CTRL_1/WRITE_CTRL_0 (net: busy_latch)
+Warning: signal handshake_req unconnected at module MEM_CTRL_1/HANDSHAKE_0
+Info: unused port debug_probe in CORE_CPU_0/DEBUG_UNIT_0
+Warning: width mismatch: expected 128 bits, got 64 bits in MEM_CTRL_1/DATA_PATH_0 (port: write_data)
+Warning: signal sync_pulse unconnected at module IO_PAD_2/SYNC_CTRL_0
+Error: latch inferred in IO_PAD_2/ASYNC_FIFO_0 (net: rd_flag_latch)
+Info: unused port reset_override in MEM_CTRL_1/RESET_SEQ_0
+Warning: width mismatch: expected 16 bits, got 8 bits in CORE_CPU_0/ALU_UNIT_0 (port: operand_a)
+Info: unused port force_update in IO_PAD_2/TIMING_GEN_0
+Info: unused port margin_adjust in CORE_CPU_0/VOLTAGE_SCALER_0
+
+====================================================================
+SUMMARY
+====================================================================
+Total Warnings: 18
+Total Errors: 6
+Total Info: 8
+====================================================================
+Lint check completed successfully.
