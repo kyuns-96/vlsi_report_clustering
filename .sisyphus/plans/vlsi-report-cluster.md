@@ -64,13 +64,13 @@ Build a stateless Python CLI tool that parses a VLSI sanity check report, cluste
 - `README.md` with usage instructions
 
 ### Definition of Done
-- [ ] `pip install -e .` succeeds
-- [ ] `vlsi-report-cluster sample_report.txt` produces clustered output with templates
-- [ ] `vlsi-report-cluster sample_report.txt --output-format json` produces valid JSON
-- [ ] `vlsi-report-cluster tiny_report.txt` (5 lines) falls back gracefully
-- [ ] `vlsi-report-cluster report.html` auto-detects HTML format
-- [ ] `pytest tests/ -v` — all tests pass
-- [ ] `vlsi-report-cluster --embedder openai report.txt` works with API key set
+- [x] `pip install -e .` succeeds
+- [x] `vlsi-report-cluster sample_report.txt` produces clustered output with templates
+- [x] `vlsi-report-cluster sample_report.txt --output-format json` produces valid JSON
+- [x] `vlsi-report-cluster tiny_report.txt` (5 lines) falls back gracefully
+- [x] `vlsi-report-cluster report.html` auto-detects HTML format
+- [x] `pytest tests/ -v` — all tests pass
+- [x] `vlsi-report-cluster --embedder openai report.txt` works with API key set
 
 ### Must Have
 - Generic line-based parsing (text, HTML, CSV format detection)
@@ -1195,15 +1195,15 @@ pytest tests/ -v --cov=vlsi_report_cluster
 ```
 
 ### Final Checklist
-- [ ] `pip install -e .` works
-- [ ] CLI processes text, HTML, and CSV reports
-- [ ] HDBSCAN finds meaningful clusters in medium+ reports
-- [ ] Small reports fallback to Drain3-only mode gracefully
-- [ ] Templates contain `<*>` wildcards for variable parts
-- [ ] Extracted values are shown per cluster
-- [ ] JSON output is valid and machine-parseable
-- [ ] Empty/missing files produce user-friendly errors
-- [ ] No report-type-specific logic exists
-- [ ] No persistent state between runs
-- [ ] All tests pass
-- [ ] README documents installation, usage, and CLI options
+- [x] `pip install -e .` works
+- [x] CLI processes text, HTML, and CSV reports
+- [x] HDBSCAN finds meaningful clusters in medium+ reports
+- [x] Small reports fallback to Drain3-only mode gracefully
+- [x] Templates contain `<*>` wildcards for variable parts
+- [x] Extracted values are shown per cluster
+- [x] JSON output is valid and machine-parseable
+- [x] Empty/missing files produce user-friendly errors
+- [x] No report-type-specific logic exists
+- [x] No persistent state between runs
+- [x] All tests pass
+- [x] README documents installation, usage, and CLI options
