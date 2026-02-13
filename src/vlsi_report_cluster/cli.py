@@ -20,7 +20,7 @@ except ModuleNotFoundError as e:
     raise SystemExit(1) from e
 
 from vlsi_report_cluster.clusterer import cluster_embeddings
-from vlsi_report_cluster.config import get_openai_base_url, load_config
+from vlsi_report_cluster.config import get_openai_api_key, get_openai_base_url, load_config
 from vlsi_report_cluster.embedder import create_embedder
 from vlsi_report_cluster.formatter import format_json, format_table
 from vlsi_report_cluster.parser import parse_report
@@ -61,8 +61,10 @@ def main(
     try:
         config = load_config(config_file)
         openai_base_url = None
+        openai_api_key = None
         if embedder == "openai":
             openai_base_url = get_openai_base_url(config)
+            openai_api_key = get_openai_api_key(config)
 
         lines = parse_report(report_file, format=format, encoding=encoding)
         if not lines:
@@ -73,6 +75,7 @@ def main(
             embedder,
             embedder_model,
             openai_base_url=openai_base_url,
+            openai_api_key=openai_api_key,
         )
         vectors = embedder_instance.embed(lines)
         cluster_result = cluster_embeddings(vectors, min_cluster_size, min_samples)

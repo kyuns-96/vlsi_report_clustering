@@ -34,6 +34,8 @@ Set your OpenAI API key:
 export OPENAI_API_KEY="your-api-key-here"
 ```
 
+Or store OpenAI settings in a config file and pass `--config` (see below).
+
 ### Development Installation
 
 For running tests and development:
@@ -127,6 +129,7 @@ Create a JSON config file:
 ```json
 {
   "openai": {
+    "api_key": "your-api-key-here",
     "base_url": "http://localhost:8080/v1"
   }
 }
@@ -138,7 +141,7 @@ Then run:
 vlsi-report-cluster report.txt --embedder openai --config config.json
 ```
 
-`OPENAI_API_KEY` is still required.
+If `openai.api_key` is set in config, you do not need `OPENAI_API_KEY` in the environment.
 
 ## CLI Options
 
@@ -147,7 +150,7 @@ vlsi-report-cluster report.txt --embedder openai --config config.json
 | `report_file` | Path | **Required** | Input report file path |
 | `--output-format` | str | `table` | Output format: `table` or `json` |
 | `--format` | str | Auto-detect | Override format detection: `text`, `html`, or `csv` |
-| `--config` | Path | None | Path to JSON config file (supports `openai.base_url`) |
+| `--config` | Path | None | Path to JSON config file (supports `openai.api_key`, `openai.base_url`) |
 | `--min-cluster-size` | int | `3` | HDBSCAN minimum cluster size (higher = fewer, larger clusters) |
 | `--min-samples` | int | `2` | HDBSCAN minimum samples (higher = stricter clustering) |
 | `--embedder` | str | `local` | Embedding backend: `local` or `openai` |

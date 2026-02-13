@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from vlsi_report_cluster.config import get_openai_base_url, load_config
+from vlsi_report_cluster.config import get_openai_api_key, get_openai_base_url, load_config
 
 
 def test_load_config_none_returns_empty_dict():
@@ -38,3 +38,17 @@ def test_get_openai_base_url_missing_returns_none():
 def test_get_openai_base_url_wrong_type_raises():
     with pytest.raises(ValueError):
         get_openai_base_url({"openai": {"base_url": 123}})
+
+
+def test_get_openai_api_key_returns_value():
+    config = {"openai": {"api_key": "sk-test-key"}}
+    assert get_openai_api_key(config) == "sk-test-key"
+
+
+def test_get_openai_api_key_missing_returns_none():
+    assert get_openai_api_key({}) is None
+
+
+def test_get_openai_api_key_wrong_type_raises():
+    with pytest.raises(ValueError):
+        get_openai_api_key({"openai": {"api_key": 123}})

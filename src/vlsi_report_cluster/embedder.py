@@ -77,29 +77,35 @@ class LocalEmbedder:
 class OpenAIEmbedder:
     """OpenAI embedder using OpenAI API.
     
-    Uses the text-embedding-3-small model by default. Requires OPENAI_API_KEY
-    environment variable to be set.
+    Uses the text-embedding-3-small model by default.
     
     Args:
         model: Model name to use (default: "text-embedding-3-small")
     """
     
-    def __init__(self, model: str = "text-embedding-3-small", base_url: str | None = None):
+    def __init__(
+        self,
+        model: str = "text-embedding-3-small",
+        base_url: str | None = None,
+        api_key: str | None = None,
+    ):
         """Initialize OpenAIEmbedder with specified model.
         
         Raises:
-            ValueError: If OPENAI_API_KEY environment variable is not set
+            ValueError: If API key is not provided in config or environment
         """
-        api_key = os.environ.get("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OPENAI_API_KEY environment variable must be set")
+        resolved_api_key = api_key or os.environ.get("OPENAI_API_KEY")
+        if not resolved_api_key:
+            raise ValueError(
+                "OpenAI API key is required. Set OPENAI_API_KEY or provide openai.api_key in --config"
+            )
         
         from openai import OpenAI
         resolved_base_url = base_url or os.environ.get("OPENAI_BASE_URL")
         if resolved_base_url:
-            self.client = OpenAI(api_key=api_key, base_url=resolved_base_url)
+            self.client = OpenAI(api_key=resolved_api_key, base_url=resolved_base_url)
         else:
-            self.client = OpenAI(api_key=api_key)
+            self.client = OpenAI(api_key=resolved_api_key)
         self.model = model
     
     def embed(self, lines: list[str]) -> NDArray[np.float32]:
@@ -129,6 +135,7 @@ def create_embedder(
     backend: str = "local",
     model: str | None = None,
     openai_base_url: str | None = None,
+    openai_api_key: str | None = None,
 ) -> Embedder:
     """Factory function to create embedder instances.
     
@@ -148,7 +155,11 @@ def create_embedder(
         return LocalEmbedder()
     elif backend == "openai":
         if model is not None:
-            return OpenAIEmbedder(model=model, base_url=openai_base_url)
-        return OpenAIEmbedder(base_url=openai_base_url)
+            return OpenAIEmbedder(
+                model=model,
+                base_url=openai_base_url,
+                api_key=openai_api_key,
+            )
+        return OpenAIEmbedder(base_url=openai_base_url, api_key=openai_api_key)
     else:
         raise ValueError(f"Unknown backend: {backend}. Use 'local' or 'openai'")

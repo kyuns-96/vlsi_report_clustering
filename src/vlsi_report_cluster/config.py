@@ -23,14 +23,7 @@ def load_config(config_file: Path | None) -> dict[str, Any]:
 
 
 def get_openai_base_url(config: dict[str, Any]) -> str | None:
-    if not config:
-        return None
-
-    openai_config = config.get("openai")
-    if openai_config is None:
-        return None
-    if not isinstance(openai_config, dict):
-        raise ValueError("Config key 'openai' must be an object")
+    openai_config = _get_openai_config(config)
 
     base_url = openai_config.get("base_url")
     if base_url is None:
@@ -42,3 +35,29 @@ def get_openai_base_url(config: dict[str, Any]) -> str | None:
     if not normalized:
         return None
     return normalized
+
+
+def get_openai_api_key(config: dict[str, Any]) -> str | None:
+    openai_config = _get_openai_config(config)
+
+    api_key = openai_config.get("api_key")
+    if api_key is None:
+        return None
+    if not isinstance(api_key, str):
+        raise ValueError("Config key 'openai.api_key' must be a string")
+
+    normalized = api_key.strip()
+    if not normalized:
+        return None
+    return normalized
+
+
+def _get_openai_config(config: dict[str, Any]) -> dict[str, Any]:
+    if not config:
+        return {}
+    openai_config = config.get("openai")
+    if openai_config is None:
+        return {}
+    if not isinstance(openai_config, dict):
+        raise ValueError("Config key 'openai' must be an object")
+    return openai_config
