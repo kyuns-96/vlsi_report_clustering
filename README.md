@@ -8,6 +8,7 @@ A powerful tool for analyzing and clustering VLSI verification reports using mac
 - **Semantic Clustering**: Uses sentence-transformers to group semantically similar violations
 - **Template Extraction**: Automatically extracts log templates with wildcard patterns using Drain3
 - **Fallback Handling**: Gracefully handles small reports or high-noise scenarios
+- **Configurable OpenAI Endpoint**: Set custom OpenAI-compatible API base URL via JSON config file
 - **Rich Output**: Beautiful terminal tables or JSON for programmatic access
 - **Production Ready**: Comprehensive error handling and edge case support
 
@@ -119,6 +120,26 @@ vlsi-report-cluster report.dat --format text
 vlsi-report-cluster report.txt --embedder openai --embedder-model text-embedding-3-small
 ```
 
+### Configure OpenAI API Location via Config File
+
+Create a JSON config file:
+
+```json
+{
+  "openai": {
+    "base_url": "http://localhost:8080/v1"
+  }
+}
+```
+
+Then run:
+
+```bash
+vlsi-report-cluster report.txt --embedder openai --config config.json
+```
+
+`OPENAI_API_KEY` is still required.
+
 ## CLI Options
 
 | Option | Type | Default | Description |
@@ -126,6 +147,7 @@ vlsi-report-cluster report.txt --embedder openai --embedder-model text-embedding
 | `report_file` | Path | **Required** | Input report file path |
 | `--output-format` | str | `table` | Output format: `table` or `json` |
 | `--format` | str | Auto-detect | Override format detection: `text`, `html`, or `csv` |
+| `--config` | Path | None | Path to JSON config file (supports `openai.base_url`) |
 | `--min-cluster-size` | int | `3` | HDBSCAN minimum cluster size (higher = fewer, larger clusters) |
 | `--min-samples` | int | `2` | HDBSCAN minimum samples (higher = stricter clustering) |
 | `--embedder` | str | `local` | Embedding backend: `local` or `openai` |

@@ -8,4 +8,5 @@ __all__ = [
     "clusterer",
     "template_extractor",
     "formatter",
+    "config",
 ]

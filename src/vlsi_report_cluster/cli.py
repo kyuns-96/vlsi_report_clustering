@@ -20,6 +20,7 @@ except ModuleNotFoundError as e:
     raise SystemExit(1) from e
 
 from vlsi_report_cluster.clusterer import cluster_embeddings
+from vlsi_report_cluster.config import get_openai_base_url, load_config
 from vlsi_report_cluster.embedder import create_embedder
 from vlsi_report_cluster.formatter import format_json, format_table
 from vlsi_report_cluster.parser import parse_report
@@ -37,6 +38,11 @@ def main(
     report_file: Path = typer.Argument(..., help="Input report file", exists=True),
     output_format: str = typer.Option("table", help="Output format: table or json"),
     format: str | None = typer.Option(None, help="Override format detection (text, html, csv)"),
+    config_file: Path | None = typer.Option(
+        None,
+        "--config",
+        help="Path to JSON config file",
+    ),
     min_cluster_size: int = typer.Option(3, help="HDBSCAN min cluster size"),
     min_samples: int = typer.Option(2, help="HDBSCAN min samples"),
     embedder: str = typer.Option("local", help="Embedding backend: local or openai"),
@@ -53,12 +59,21 @@ def main(
     console = Console(stderr=True)
 
     try:
+        config = load_config(config_file)
+        openai_base_url = None
+        if embedder == "openai":
+            openai_base_url = get_openai_base_url(config)
+
         lines = parse_report(report_file, format=format, encoding=encoding)
         if not lines:
             console.print("[red]Error: No lines found in report[/red]")
             raise typer.Exit(1)
 
-        embedder_instance = create_embedder(embedder, embedder_model)
+        embedder_instance = create_embedder(
+            embedder,
+            embedder_model,
+            openai_base_url=openai_base_url,
+        )
         vectors = embedder_instance.embed(lines)
         cluster_result = cluster_embeddings(vectors, min_cluster_size, min_samples)
 
@@ -84,6 +99,9 @@ def main(
         raise typer.Exit(2)
     except UnicodeDecodeError:
         console.print("[red]Error: Unable to decode file. Try --encoding parameter[/red]")
+        raise typer.Exit(1)
+    except ValueError as e:
+        console.print(f"[red]Error: {e}[/red]")
         raise typer.Exit(1)
     except OSError as e:
         console.print(f"[red]Error: {e}[/red]")
