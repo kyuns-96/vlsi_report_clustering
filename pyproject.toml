@@ -9,7 +9,7 @@ description = "VLSI Report Clustering and Analysis Tool"
 readme = "README.md"
 authors = [{name = "Author", email = "author@example.com"}]
 license = {text = "MIT"}
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 dependencies = [
     "typer>=0.9.0",
@@ -32,7 +32,7 @@ openai = [
 ]
 
 [project.scripts]
-vlsi-report-cluster = "vlsi_report_cluster.cli:main"
+vlsi-report-cluster = "vlsi_report_cluster.cli:cli_main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
